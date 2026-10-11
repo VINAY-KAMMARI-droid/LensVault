@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  application:
+    name: lensvault-backend
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:lensvault_db}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 500MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:LensVaultSuperSecretKeyForJwtSigningMustBeAtLeast256BitsLongForHmacSha256Security}
+    expiration-ms: 86400000 # 24 hours
+  storage:
+    upload-dir: ${STORAGE_DIR:storage/uploads}
+    thumbnail-dir: ${THUMBNAIL_DIR:storage/thumbnails}
+    max-file-size-bytes: 209715200 # 200MB
+    allowed-image-types:
+      - image/jpeg
+      - image/png
+      - image/webp
+    allowed-video-types:
+      - video/mp4
+      - video/webm
+  demo:
+    seed-data: true

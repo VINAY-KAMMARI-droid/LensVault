@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: lensvault-backend-test
+  datasource:
+    url: jdbc:h2:mem:lensvault_test;DB_CLOSE_DELAY=-1;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+
+app:
+  jwt:
+    secret: LensVaultSuperSecretKeyForJwtSigningMustBeAtLeast256BitsLongForHmacSha256SecurityTestSecret
+    expiration-ms: 3600000
+  storage:
+    upload-dir: target/test-storage/uploads
+    thumbnail-dir: target/test-storage/thumbnails
+    max-file-size-bytes: 209715200
+    allowed-image-types:
+      - image/jpeg
+      - image/png
+      - image/webp
+    allowed-video-types:
+      - video/mp4
+      - video/webm
+  demo:
+    seed-data: false
