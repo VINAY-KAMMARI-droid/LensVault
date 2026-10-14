@@ -1,4 +1,4 @@
-```javascript
+
 import axios from 'axios';
 
 const BASE_URL =
@@ -18,7 +18,7 @@ axiosClient.interceptors.request.use(
     const token = localStorage.getItem('lensvault_token');
 
     if (token) {
-      config.headers.Authorization = `Bearer ${ token } `;
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;
@@ -56,4 +56,3 @@ axiosClient.interceptors.response.use(
 
 export default axiosClient;
 export { BASE_URL };
-```
